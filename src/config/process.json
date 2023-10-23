@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Estres",
+    "title": "stress",
+    "type": "LinePlot",
+    "text": "Esta es informacion de lo que es el estres"
+  },
+  {
+    "name": "Ritmo cardiaco",
+    "title": "hearth_rythm",
+    "type": "LinePlot",
+    "text": "Esta es informacion de lo que es el ritmo cardiaco"
+  }
+]

@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import DashboardLayout from "./layout/DashboardLayout.jsx";
+import Login from "../src/pages/Login/Login.jsx";
+import Users from "./pages/Admin/Users.jsx";
+import Cadets from "./pages/Cadets/Cadets.jsx";
+import Cadet from "./pages/Cadets/Cadet.jsx";
+import GenerateData from "./pages/Cadets/GenerateData.jsx";
+import AddCadet from "./pages/Cadets/AddCadet.jsx";
+import Settings from "./pages/Admin/Settings.jsx";
+import TermsAndConditions from "./pages/Login/TermsAndConditions";
+import ProtectedRoute from "./helpers/ProtectedRoute.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <Routes>
+        <Route index element={<Login />} />
+        <Route path="login" element={<Login />} />
+        <Route path="termnsandconditions" element={<TermsAndConditions />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="dashboard" element={<DashboardLayout />}>
+            <Route path="cadets" element={<Cadets />} />
+            <Route path="cadets/:id" element={<Cadet />} />
+            <Route path="processData" element={<GenerateData />} />
+            <Route path="manageUsers" element={<Users />} />
+            <Route path="settings" element={<Settings />} />
+            {/* <Route path="manageInputs" element={<GenerateInputs />} /> */}
+          </Route>
+        </Route>
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
