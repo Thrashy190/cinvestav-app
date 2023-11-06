@@ -8,15 +8,17 @@ import {
   CModalTitle,
 } from "@coreui/react";
 
-const CheckCreateUserModal = ({
+const CheckCreateCadetModal = ({
   visibleCreate,
   setVisibleCreate,
   formValues,
   setNotify,
+  cadets,
+  setCadets,
 }) => {
-  async function createUser() {
+  async function createCadet() {
     try {
-      const result = await fetch("http://127.0.0.1:3000/auth/signup", {
+      const result = await fetch("http://127.0.0.1:3000/cadets/cadet", {
         method: "POST",
         body: JSON.stringify(formValues),
         headers: {
@@ -33,17 +35,17 @@ const CheckCreateUserModal = ({
         });
         return;
       }
-      setUsers([formValues, ...users]);
+      setCadets([formValues, ...cadets]);
       setNotify({
         isOpen: true,
-        message: "Usuario creado correctamente",
+        message: "Cadete creado correctamente",
         type: "success",
       });
       setVisibleCreate(false);
     } catch (error) {
       setNotify({
         isOpen: true,
-        message: "Error al crear usuario o usuario ya existente",
+        message: "Error al crear cadete o cadete ya existente",
         type: "error",
       });
       setVisibleCreate(false);
@@ -63,13 +65,15 @@ const CheckCreateUserModal = ({
         <div className="text-lg font-semibold">Identificador del cadete: </div>
         <p>{formValues.identifier}</p>
         <div className="text-lg font-semibold">Genero del cadete: </div>
-        <p>{formValues.genre}</p>
+        <p>{formValues.gender}</p>
         <div className="text-lg font-semibold">Estado civil: </div>
-        <p>{formValues.relationship}</p>
+        <p>{formValues.maritalStatus}</p>
         <div className="text-lg font-semibold">Rango del cadete: </div>
-        <p>{formValues.level}</p>
-        <div className="text-lg font-semibold">Edad del cadete: </div>
-        <p>{formValues.birth}</p>
+        <p>{formValues.rank}</p>
+        <div className="text-lg font-semibold">
+          Fecha de nacimiento del cadete:{" "}
+        </div>
+        <p>{formValues.birthDate}</p>
       </CModalBody>
       <CModalFooter>
         <CButton
@@ -79,12 +83,12 @@ const CheckCreateUserModal = ({
         >
           Cerrar
         </CButton>
-        <CButton color="primary" variant="outline" onClick={createUser}>
-          Crear usuario
+        <CButton color="primary" variant="outline" onClick={createCadet}>
+          Crear Cadete
         </CButton>
       </CModalFooter>
     </CModal>
   );
 };
 
-export default CheckCreateUserModal;
+export default CheckCreateCadetModal;

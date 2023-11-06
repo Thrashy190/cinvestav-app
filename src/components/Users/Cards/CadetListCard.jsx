@@ -14,9 +14,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { unix_to_date } from "../../../utils/dateFormatter.js";
 
-const CadetListCard = () => {
+const CadetListCard = ({ cadets, setCadets }) => {
   const navigate = useNavigate();
-  const [cadets, setCadets] = useState([]);
 
   useEffect(() => {
     fetchCadets();

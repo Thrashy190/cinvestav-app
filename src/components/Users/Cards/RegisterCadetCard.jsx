@@ -14,9 +14,9 @@ import {
 } from "@coreui/react";
 import Notification from "../../../helpers/Notifications.jsx";
 import CheckCreateCadetModal from "../Modals/CheckCreateCadetModal.jsx";
-import { now_date_to_unix } from "../../../utils/dateFormatter.js";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-const RegisterCadetCard = () => {
+const RegisterCadetCard = ({ cadets, setCadets }) => {
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -25,11 +25,10 @@ const RegisterCadetCard = () => {
   const [visibleCreate, setVisibleCreate] = useState(false);
   const [formValues, setFormValues] = useState({
     identifier: "",
-    name: "",
-    birth: null,
-    level: "",
-    create_at: "",
-    relationship: "",
+    gender: "",
+    birthDate: "",
+    rank: "",
+    maritalStatus: "",
   });
 
   const openCheckModal = () => {
@@ -39,21 +38,16 @@ const RegisterCadetCard = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === "birth") {
-      setFormValues({ ...formValues, [name]: parseInt(value) });
-    } else {
-      setFormValues({ ...formValues, [name]: value });
-    }
+    setFormValues({ ...formValues, [name]: value });
   };
 
   const handleClear = () => {
     setFormValues({
       identifier: "",
-      genre: "",
-      birth: null,
-      level: "",
-      create_at: "",
-      relationship: "",
+      gender: "",
+      birthDate: "",
+      rank: "",
+      maritalStatus: "",
     });
   };
 
@@ -77,8 +71,9 @@ const RegisterCadetCard = () => {
             <CCol xs={12} md={4}>
               <CFormLabel>Genero</CFormLabel>
               <CFormSelect
-                aria-label="genre"
-                name="genre"
+                aria-label="gender"
+                name="gender"
+                value={formValues.gender}
                 onChange={handleInputChange}
               >
                 <option>Elige un genero</option>
@@ -88,10 +83,20 @@ const RegisterCadetCard = () => {
               </CFormSelect>
             </CCol>
             <CCol xs={12} md={4}>
+              <CFormLabel>Fecha de nacimiento</CFormLabel>
+              <DatePicker
+                name="birthDate}"
+                value={formValues.birthDate}
+                onChange={(newValue) => handleInputChange(newValue)}
+              />
+            </CCol>
+          </CRow>
+          <CRow className="pt-4">
+            <CCol xs={12} md={4}>
               <CFormLabel>Rango</CFormLabel>
               <CFormSelect
-                aria-label="Level"
-                name="level"
+                aria-label="Rank"
+                name="rank"
                 onChange={handleInputChange}
               >
                 <option>Elige un rango</option>
@@ -101,28 +106,17 @@ const RegisterCadetCard = () => {
                 <option value="4">4</option>
               </CFormSelect>
             </CCol>
-          </CRow>
-          <CRow className="pt-4">
-            <CCol xs={12} md={4}>
-              <CFormLabel>Edad</CFormLabel>
-              <CFormInput
-                type="number"
-                name="birth"
-                value={formValues.birth}
-                onChange={handleInputChange}
-              />
-            </CCol>
             <CCol xs={12} md={4}>
               <CFormLabel>Estado civil</CFormLabel>
               <CFormSelect
-                aria-label="relationship"
-                name="relationship"
+                aria-label="maritalStatus"
+                name="maritalStatus"
                 onChange={handleInputChange}
               >
                 <option>Elige un estado civil</option>
                 <option value="Soltero">Soltero</option>
                 <option value="Casado">Casado</option>
-                <option value="Viudor">Viudo</option>
+                <option value="Viudo">Viudo</option>
               </CFormSelect>
             </CCol>
           </CRow>
@@ -153,6 +147,8 @@ const RegisterCadetCard = () => {
         visibleCreate={visibleCreate}
         setVisibleCreate={setVisibleCreate}
         setNotify={setNotify}
+        setCadets={setCadets}
+        cadets={cadets}
       />
       <Notification notify={notify} setNotify={setNotify} position={"top"} />
     </CCard>
