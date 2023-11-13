@@ -14,7 +14,6 @@ import {
 } from "@coreui/react";
 import Notification from "../../../helpers/Notifications.jsx";
 import CheckCreateCadetModal from "../Modals/CheckCreateCadetModal.jsx";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const RegisterCadetCard = ({ cadets, setCadets }) => {
   const [notify, setNotify] = useState({
@@ -32,7 +31,6 @@ const RegisterCadetCard = ({ cadets, setCadets }) => {
   });
 
   const openCheckModal = () => {
-    setFormValues({ ...formValues, create_at: now_date_to_unix() });
     setVisibleCreate(true);
   };
 
@@ -77,17 +75,18 @@ const RegisterCadetCard = ({ cadets, setCadets }) => {
                 onChange={handleInputChange}
               >
                 <option>Elige un genero</option>
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
-                <option value="O">Otros</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otros</option>
               </CFormSelect>
             </CCol>
             <CCol xs={12} md={4}>
               <CFormLabel>Fecha de nacimiento</CFormLabel>
-              <DatePicker
-                name="birthDate}"
+              <CFormInput
+                type="date"
+                name="birthDate"
                 value={formValues.birthDate}
-                onChange={(newValue) => handleInputChange(newValue)}
+                onChange={handleInputChange}
               />
             </CCol>
           </CRow>

@@ -50,7 +50,7 @@ const CadetListCard = ({ cadets, setCadets }) => {
               <CTableHeaderCell>Genero</CTableHeaderCell>
               <CTableHeaderCell>Estado civil</CTableHeaderCell>
               <CTableHeaderCell>Rango</CTableHeaderCell>
-              <CTableHeaderCell>Fecha de creacion</CTableHeaderCell>
+              <CTableHeaderCell>Fecha de nacimiento</CTableHeaderCell>
               <CTableHeaderCell></CTableHeaderCell>
             </CTableRow>
           </CTableHead>
@@ -61,7 +61,7 @@ const CadetListCard = ({ cadets, setCadets }) => {
                 <td>{cadet.gender}</td>
                 <td>{cadet.maritalStatus}</td>
                 <td>{cadet.rank}</td>
-                <td>{cadet.createdAt}</td>
+                <td>{cadet.birthDate}</td>
                 <td>
                   <CButton
                     color="primary"
