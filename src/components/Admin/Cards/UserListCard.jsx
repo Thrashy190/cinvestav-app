@@ -11,11 +11,11 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from "@coreui/react";
-import { unix_to_date } from "../../../utils/dateFormatter.js";
-import CheckCreateUserModal from "../Modals/CheckCreateUserModal.jsx";
-import Notification from "../../../helpers/Notifications.jsx";
+import { useAuth } from "../../../context/AuthProvider.jsx";
+import { iso_to_date } from "../../../utils/dateFormatter.js";
 
 const UserListCard = ({ users, setUsers }) => {
+  const { currentUser, logOut } = useAuth();
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -44,8 +44,12 @@ const UserListCard = ({ users, setUsers }) => {
               <CTableHeaderCell>Identificador</CTableHeaderCell>
               <CTableHeaderCell>Rol</CTableHeaderCell>
               <CTableHeaderCell>Fecha de creacion</CTableHeaderCell>
-              <CTableHeaderCell></CTableHeaderCell>
-              <CTableHeaderCell></CTableHeaderCell>
+              {currentUser.role === "Admin" ? (
+                <>
+                  <CTableHeaderCell></CTableHeaderCell>
+                  <CTableHeaderCell></CTableHeaderCell>
+                </>
+              ) : null}
             </CTableRow>
           </CTableHead>
           <CTableBody>
@@ -53,17 +57,21 @@ const UserListCard = ({ users, setUsers }) => {
               <CTableRow key={user.identifier}>
                 <td>{user.identifier}</td>
                 <td>{user.role}</td>
-                <td>{user.createdAt}</td>
-                <td>
-                  <CButton color="primary" variant="outline">
-                    Editar
-                  </CButton>
-                </td>
-                <td>
-                  <CButton color="danger" variant="outline">
-                    Eliminar
-                  </CButton>
-                </td>
+                <td>{iso_to_date(user.createdAt)}</td>
+                {currentUser.role === "Admin" ? (
+                  <>
+                    <td>
+                      <CButton color="primary" variant="outline">
+                        Editar
+                      </CButton>
+                    </td>
+                    <td>
+                      <CButton color="danger" variant="outline">
+                        Eliminar
+                      </CButton>
+                    </td>
+                  </>
+                ) : null}
               </CTableRow>
             ))}
           </CTableBody>

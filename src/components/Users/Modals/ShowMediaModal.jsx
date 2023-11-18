@@ -21,19 +21,11 @@ const ShowMediaModal = ({ visibleCreate, setVisibleCreate, data }) => {
         <CModalTitle>{data.name}</CModalTitle>
       </CModalHeader>
       <CModalBody>
-        {/* {data.name.includes(".mp4") ? (
-          <video
-            className="h-max w-max"
-            src={convertFileSrc(data.path)}
-            controls
-          />
+        {data.name.includes(".mp4") ? (
+          <video className="h-max w-max" src={data.path} controls />
         ) : (
-          <img
-            className="h-max w-max"
-            src={convertFileSrc(data.path)}
-            alt={data.name}
-          />
-        )} */}
+          <img className="h-1/2 w-1/2" src={data.path} alt={data.name} />
+        )}
       </CModalBody>
       <CModalFooter>
         <CButton

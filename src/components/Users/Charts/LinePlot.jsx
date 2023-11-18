@@ -1,7 +1,14 @@
 import React from "react";
 import Plot from "react-plotly.js";
 import { Line } from "react-chartjs-2";
-import { CCard, CCardBody, CCardHeader, CCardTitle, CImage, CPopover } from "@coreui/react";
+import {
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCardTitle,
+  CImage,
+  CPopover,
+} from "@coreui/react";
 import { unix_to_date } from "../../../utils/dateFormatter.js";
 import help from "../../../assets/help.png";
 
@@ -20,7 +27,7 @@ const colors = [
 function LinePlot({ info, name, text }) {
   const datasets = info.map((data, index) => {
     return {
-      name: unix_to_date(data.date),
+      name: data.name,
       x: data.time,
       y: data.data,
       mode: "lines+markers",
@@ -39,12 +46,13 @@ function LinePlot({ info, name, text }) {
             title="Ayuda"
             content={text}
             placement="right"
-            trigger={['hover', 'focus']}
+            trigger={["hover", "focus"]}
           >
             <span className="d-inline-block" tabIndex={0}>
               <img src={help} />
             </span>
-          </CPopover>  </CCardTitle>
+          </CPopover>
+        </CCardTitle>
       </CCardHeader>
 
       <Plot data={datasets} useResizeHandler layout={{ autosize: true }} />

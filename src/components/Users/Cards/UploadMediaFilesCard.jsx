@@ -15,7 +15,32 @@ const UploadMediaFilesCard = ({ identifier }) => {
     setSelectedFiles(event.target.files);
   };
 
-  const readFiles = async () => {};
+  const readFiles = async () => {
+    const formData = new FormData();
+    for (let i = 0; i < selectedFiles.length; i++) {
+      formData.append("files", selectedFiles[i]);
+    }
+    const response = await fetch(
+      `http://localhost:3000/files/upload-files/${identifier}`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    if (response.status === 200) {
+      setNotify({
+        isOpen: true,
+        message: "Archivos subidos exitosamente",
+        type: "success",
+      });
+    } else {
+      setNotify({
+        isOpen: true,
+        message: "Error al subir los archivos",
+        type: "error",
+      });
+    }
+  };
 
   return (
     <CCard className="mt-4">

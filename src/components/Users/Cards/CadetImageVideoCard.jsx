@@ -13,14 +13,23 @@ import {
   CTableRow,
 } from "@coreui/react";
 import ShowMediaModal from "../Modals/ShowMediaModal.jsx";
+import policia from "../../../assets/policia.jpg";
 
 const CadetImageVideoCard = ({ identifier }) => {
-  const [mediaFiles, setMediaFiles] = useState([]);
+  const [mediaFiles, setMediaFiles] = useState([
+    {
+      name: "Imagen uno",
+      path: policia,
+    },
+  ]);
   const [visibleCreate, setVisibleCreate] = useState(false);
-  const [data, setData] = useState({ name: "", path: "" });
+  const [data, setData] = useState({
+    name: "Imagen uno",
+    path: policia,
+  });
 
   useEffect(() => {
-    fetchMediaFiles().then(() => {});
+    // fetchMediaFiles().then(() => {});
   }, []);
 
   const fetchMediaFiles = async () => {};

@@ -15,7 +15,13 @@ const UploadTextFilesCard = ({ identifier }) => {
     setSelectedTextFiles(event.target.files);
   };
 
-  const readFiles = async () => {};
+  const readFiles = async () => {
+    setNotify({
+      isOpen: true,
+      message: "Archivos subidos exitosamente",
+      type: "success",
+    });
+  };
 
   return (
     <CCard className="mt-4">

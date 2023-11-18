@@ -8,7 +8,7 @@ import {
   CRow,
 } from "@coreui/react";
 import React from "react";
-import { unix_to_date } from "../../../utils/dateFormatter.js";
+import { iso_to_date } from "../../../utils/dateFormatter.js";
 import { useParams } from "react-router-dom";
 
 const CadetDataCard = () => {
@@ -58,7 +58,7 @@ const CadetDataCard = () => {
           </CCol>
           <CCol xs={12} md={4}>
             <h3 className="text-lg font-semibold">Edad del cadete: </h3>
-            <div className="text-base">{cadet.birthDate}</div>
+            <div className="text-base">{iso_to_date(cadet.birthDate)}</div>
           </CCol>
           <CCol xs={12} md={4}>
             <h3 className="text-lg font-semibold">Fecha de creacion: </h3>

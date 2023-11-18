@@ -46,7 +46,13 @@ const UploadDataFileCard = ({ identifier, processData }) => {
     setSelectedFile(event.target);
   };
 
-  const readFile = async () => {};
+  const readFile = async () => {
+    setNotify({
+      isOpen: true,
+      message: "Archivo subido correctamente",
+      type: "success",
+    });
+  };
 
   return (
     <CCard className="mt-4">

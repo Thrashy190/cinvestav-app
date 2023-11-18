@@ -12,7 +12,7 @@ import {
   CTableRow,
 } from "@coreui/react";
 import { useNavigate } from "react-router-dom";
-import { unix_to_date } from "../../../utils/dateFormatter.js";
+import { iso_to_date } from "../../../utils/dateFormatter.js";
 
 const CadetListCard = ({ cadets, setCadets }) => {
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ const CadetListCard = ({ cadets, setCadets }) => {
                 <td>{cadet.gender}</td>
                 <td>{cadet.maritalStatus}</td>
                 <td>{cadet.rank}</td>
-                <td>{cadet.birthDate}</td>
+                <td>{iso_to_date(cadet.birthDate)}</td>
                 <td>
                   <CButton
                     color="primary"

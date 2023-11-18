@@ -10,6 +10,7 @@ import AddCadet from "./pages/Cadets/AddCadet.jsx";
 import Settings from "./pages/Admin/Settings.jsx";
 import TermsAndConditions from "./pages/Login/TermsAndConditions";
 import ProtectedRoute from "./helpers/ProtectedRoute.jsx";
+import "./scss/styles.scss";
 
 function App() {
   return (

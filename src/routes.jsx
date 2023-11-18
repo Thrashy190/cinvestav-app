@@ -45,13 +45,6 @@ const _adminNav = [
     roles: ["Admin"],
   },
   {
-    component: CNavItem,
-    name: "Ajustes",
-    to: "/dashboard/settings",
-    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
-    roles: ["Admin"],
-  },
-  {
     component: CNavTitle,
     name: "Sesión",
     roles: ["Admin", "Lector", "Analista", "Supervisor", "Operador"],
@@ -66,3 +59,11 @@ const _adminNav = [
 ];
 
 export default _adminNav;
+
+// {
+//   component: CNavItem,
+//   name: "Ajustes",
+//   to: "/dashboard/settings",
+//   icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
+//   roles: ["Admin"],
+// },
